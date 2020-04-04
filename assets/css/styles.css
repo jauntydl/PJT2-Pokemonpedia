@@ -18,6 +18,8 @@ body {
   background-color: #ededed;
 }
 
+
+
 /* Media query for body */
 @media only screen and (max-width: 767px) {
   /* Set background color to white on small screens */
@@ -368,14 +370,6 @@ hr {
   ;
 }
 
-body {
-  margin: 50px;
-}
-
-h1 {
-  font: 150%/150% 'Freckle Face', cursive;
-}
-
 
 .home-img2 {
   display: block;
@@ -432,4 +426,12 @@ h1 {
     content: attr(data-th);
   }
 
+  h3.welcome {
+    text-align: center;
+    display: block;
+    font-size: 2.0em;
+    font-weight: bold;
+    text-align: center;
+  }
+  
 /* ----FOOTER END---- */

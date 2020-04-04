@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Bootstrap Visualization Dashboard</title>
+    <title>Battle Simulator</title>
 
     <!-- Boostrap Stylesheet -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css" media="screen">
@@ -17,12 +17,13 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script type="text/javascript" src="../static/js/battle2.js"></script>
+    
     
 
   </head>
 
   <body>
+    
     <!-- Start of navbar -->
     <nav class="navbar navbar-default">
       <div class="container-fluid navbar-custom">
@@ -46,7 +47,7 @@
             <ul class="nav navbar-nav navbar-right navbar-right-custom">
               <li><a href="../Index.html">Home</a></li>
               <li><a href="Ranking.html">Monster Ranking</a></li>
-              <li><a href="Search.html">Monster Search</a></li>
+              <li><a href="Profile.html">Monster Profile</a></li>
               <li><a href="Battle.html">Battle Simulator</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
@@ -59,12 +60,18 @@
     <div class="container">
       <section class="row">
         <div class="col-md-12">
+          
           <article class="description-content">
-            <p> For Aaron</p>
+            <p> Pokemon Death Battle! </p>
+            <ul class="battle"></ul>         
+            <input id="clickMe" type="button" value="Fight!" onclick="Battle();" />
+            
           </article>
         </div>
       </section>
     </div>
+    
+    
     
     <!-- End of container -->
 
@@ -82,6 +89,9 @@
 
     <!-- Bootstrap CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/js/battle2.js"></script>
+    
   </body>
+  
 
 </html>

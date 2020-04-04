@@ -12,6 +12,11 @@ var monster2_index = selectMonster();
 console.log(monster2_index);
 
 function Battle(){
+    var monster1_index = selectMonster();
+    console.log(monster1_index);
+
+    var monster2_index = selectMonster();
+    console.log(monster2_index);
     d3.csv(datapath).then(function(p){ 
         var monster1_name = p[monster1_index].Name;
         console.log(monster1_name)
@@ -25,7 +30,6 @@ function Battle(){
         console.log(monster1_sdef)
         var monster1_spd = p[monster1_index].Speed;
         
-
         var monster2_name = p[monster2_index].Name;
         console.log(monster2_name)
         var monster2_power = p[monster2_index].Total;
@@ -44,64 +48,27 @@ function Battle(){
         } else if (monster1_power < monster2_power){
             winner = monster2_name
         } else{
-            winner ="tie"
+            winner ="It's a tie!"
         }
     console.log("And the Winner is: " + winner);
+    var list = d3.select(".battle");
 
-    var barDiv = document.getElementById('bar-chart');
- 
-    var HP = {
-        x: [monster1_name, monster2_name],
-        y: [monster1_hp, monster2_hp],
-        type: 'bar',
-        name: 'HP'
-        };
- 
-    var Attack = {
-        x: [monster1_name, monster2_name],
-        y: [monster1_att, monster2_att],
-        type: 'bar',
-        name: 'Attack'
-        };
- 
-    var Defense = {
-        x: [monster1_name, monster2_name],
-        y: [monster1_def, monster2_def],
-        type: 'bar',
-        name: 'Defense'
-        };
-    var SAttack = {
-        x: [monster1_name, monster2_name],
-        y: [monster1_satt, monster2_satt],
-        type: 'bar',
-        name: 'Special Attack'
-        };
-    var SDefense = {
-        x: [monster1_name, monster2_name],
-        y: [monster1_sdef, monster2_sdef],
-        type: 'bar',
-        name: 'Special Defense'
-        };
-    var Speed = {
-        x: [monster1_name, monster2_name],
-        y: [monster1_spd, monster2_spd],
-        type: 'bar',
-        name: 'Speed'
-        };
- 
-var data = [HP, Attack, Defense, SAttack, SDefense, Speed];
- 
-var layout = {
-  title:'Stat comparison',
-  barmode: 'stack'
-};
- 
-// Plotly.plot( barDiv, data, layout );
+    // remove any children from the list to
+    list.html("");
+
+    // append stats to the list
+    list.append("li").text("The two fighters are:" + monster1_name + " and " + monster2_name);
+    list.append("li").text("The winner is.....");
+    list.append("li").text(winner);
+    
+    
     
     });
+
+    
 }
 
-Battle()
+//Battle()
 
 d3.csv(datapath).then(function(data) {
     console.log(data[56]);
