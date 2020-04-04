@@ -12,6 +12,11 @@ var monster2_index = selectMonster();
 console.log(monster2_index);
 
 function Battle(){
+    var monster1_index = selectMonster();
+    console.log(monster1_index);
+
+    var monster2_index = selectMonster();
+    console.log(monster2_index);
     d3.csv(datapath).then(function(p){ 
         var monster1_name = p[monster1_index].Name;
         console.log(monster1_name)
@@ -25,7 +30,6 @@ function Battle(){
         console.log(monster1_sdef)
         var monster1_spd = p[monster1_index].Speed;
         
-
         var monster2_name = p[monster2_index].Name;
         console.log(monster2_name)
         var monster2_power = p[monster2_index].Total;
@@ -89,14 +93,14 @@ function Battle(){
         name: 'Speed'
         };
  
-var data = [HP, Attack, Defense, SAttack, SDefense, Speed];
+    var data = [HP, Attack, Defense, SAttack, SDefense, Speed];
  
-var layout = {
-  title:'Stat comparison',
-  barmode: 'stack'
-};
+    var layout = {
+        title:'Stat comparison',
+        barmode: 'stack'
+    };
  
-Plotly.plot( barDiv, data, layout );
+    Plotly.newPlot( 'barDiv', data, layout );
     
     });
 }
