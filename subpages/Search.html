@@ -5,14 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Bootstrap Visualization Dashboard</title>
-
-    <!-- Boostrap Stylesheet -->
+    <title>Pokemon Search</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css" media="screen">
-
-    <!-- Our own CSS stylesheet -->
     <link rel="stylesheet" href="../assets/css/styles.css" media="screen">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+  
 
   </head>
 
@@ -63,7 +61,8 @@
                   </li>
                 </ul>
               </div>
-              <button id="searchpokemon" type="button" class="blue">Filter Table</button>
+              <button id="searchbutton" type="button" class="blue">Search Pokemon</button>
+              <button id="listbutton" type="button" class="red">Back to Full List</button>
             </form>
             <hr>
 
@@ -83,7 +82,6 @@
                   <th class="table-head">Speed</th>
                   <th class="table-head">Generation</th>
                   <th class="table-head">Legendary</th>
-                  <th class="table-head">Rank Score</th>
                 </tr>
               </thead>
               <tbody></tbody>
@@ -110,5 +108,7 @@
     <!-- Bootstrap CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </body>
+
+  <script type="text/javascript" src="../static/js/searchapp.js"></script>
 
 </html>

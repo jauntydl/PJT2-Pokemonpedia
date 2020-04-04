@@ -1,80 +1,115 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<head>
 
-    <title>Bootstrap Visualization Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pokemon Ranking</title>
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" href="../assets/css/styles.css" media="screen">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
 
-    <!-- Boostrap Stylesheet -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" media="screen">
+</head>
 
-    <!-- Our own CSS stylesheet -->
-    <link rel="stylesheet" href="../assets/css/styles.css" media="screen">
-
-  </head>
-
-  <body>
-    <!-- Start of navbar -->
-    <nav class="navbar navbar-default">
-      <div class="container-fluid navbar-custom">
-
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="row">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle Navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <div class="col-xs-9 phone-nav">
-              <a class="navbar-brand" href="#" id="logo">Pokemonpedia</a>
-            </div>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid navbar-custom">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle Navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="col-xs-9 phone-nav">
+            <a class="navbar-brand" href="#" id="logo">Pokemonpedia</a>
           </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right navbar-right-custom">
-              <li><a href="../Home.html">Home</a></li>
-              <li><a href="Ranking.html">Monster Ranking</a></li>
-              <li><a href="Profile.html">Monster Profile</a></li>
-              <li><a href="Battle.html">Battle Simulator</a></li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
         </div>
-      </div><!-- /.container-fluid -->
-    </nav>
-    <!-- End of navbar -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right navbar-right-custom">
+            <li><a href="../Index.html">Home</a></li>
+            <li><a href="Ranking.html">Monster Ranking</a></li>
+            <li><a href="Search.html">Monster Search</a></li>
+            <li><a href="Battle.html">Battle Simulator</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div>
+    </div><!-- /.container-fluid -->
+  </nav>
+  <!-- End of navbar -->
 
-    <!-- Start of container -->
-    <div class="container">
-      <section class="row">
-        <div class="col-md-12">
-          <article class="description-content">
-            <p> For Davis</p>
-          </article>
-        </div>
-      </section>
-    </div>
-    <!-- End of container -->
+  <!-- Start of container -->
+  <div class="container">
+    <section class="row">
+      <div id="Mainbody" class="col-md-12">
+        <article id="Main" class="description-content">
+          <h2> Find out the Top Pokemons in each attribute! </h2>
+          <hr>
+          <h4> Select all attributes that you wish to be considered for ranking </h4>
 
-    <!-- Start of footer -->
-    <footer class="footer navbar-fixed-bottom">
-      <div class="two-toned-footer-color"></div>
-      <p class="text-muted text-muted-footer text-center">
-        &copy; Project2 by Davis, April, and Aaron
-      </p>
-    </footer>
-    <!-- End of footer -->
+          <label><input class="cb" type="checkbox" value="HP" checked>HP</label>
+          <label><input class="cb" type="checkbox" value="Attack">Attack</label>
+          <label><input class="cb" type="checkbox" value="Defense">Defense</label>
+          <label><input class="cb" type="checkbox" value="Sp. Atk">Special Attack</label>
+          <label><input class="cb" type="checkbox" value="Sp. Def">Special Defense</label>
+          <label><input class="cb" type="checkbox" value="Speed">Speed</label>
 
-    <!-- jQuery CDN -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+          <br>
+          <h4> Number of Pokemons displayed : (default is top 10)</h4>
+          <input type="text" id="NofPoke" value=10 name="NofPoke"><br><br>
+          <label><Button id="GenTable" class="blue">Show me the ranking! </button></label>
+          
+            <br /><br />
 
-    <!-- Bootstrap CDN -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  </body>
+          <table id="table-area" class="table table-striped">
+            <thead>
+              <tr>
+                <th class="table-head">#</th>
+                <th class="table-head">Name</th>
+                <th class="table-head">Type 1</th>
+                <th class="table-head">Type 2</th>
+                <th class="table-head">Total</th>
+                <th class="table-head">HP</th>
+                <th class="table-head">Attack</th>
+                <th class="table-head">Defense</th>
+                <th class="table-head">Special Attack</th>
+                <th class="table-head">Special Defense</th>
+                <th class="table-head">Speed</th>
+                <th class="table-head">Generation</th>
+                <th class="table-head">Legendary</th>
+                <th class="table-head">Rank Score</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </article>
+
+      </div>
+    </section>
+  </div>
+  <!-- End of container -->
+
+  <!-- Start of footer -->
+  <footer class="footer navbar-fixed-bottom">
+    <div class="two-toned-footer-color"></div>
+    <p class="text-muted text-muted-footer text-center">
+      &copy; Project2 by Davis, April, and Aaron
+    </p>
+  </footer>
+  <!-- End of footer -->
+
+  <!-- jQuery CDN -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+  <!-- Bootstrap CDN -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+
+<script type="text/javascript" src="../static/js/rankingapp.js"></script>
 
 </html>
