@@ -1,74 +1,110 @@
-var x, i, j, selElmnt, a, b, c;
-/* Look for any elements with the class "custom-select": */
-x = document.getElementsByClassName("custom-select");
-for (i = 0; i < x.length; i++) {
-  selElmnt = x[i].getElementsByTagName("select")[0];
-  /* For each element, create a new DIV that will act as the selected item: */
-  a = document.createElement("DIV");
-  a.setAttribute("class", "select-selected");
-  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-  x[i].appendChild(a);
-  /* For each element, create a new DIV that will contain the option list: */
-  b = document.createElement("DIV");
-  b.setAttribute("class", "select-items select-hide");
-  for (j = 1; j < selElmnt.length; j++) {
-    /* For each option in the original select element,
-    create a new DIV that will act as an option item: */
-    c = document.createElement("DIV");
-    c.innerHTML = selElmnt.options[j].innerHTML;
-    c.addEventListener("click", function(e) {
-        /* When an item is clicked, update the original select box,
-        and the selected item: */
-        var y, i, k, s, h;
-        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-        h = this.parentNode.previousSibling;
-        for (i = 0; i < s.length; i++) {
-          if (s.options[i].innerHTML == this.innerHTML) {
-            s.selectedIndex = i;
-            h.innerHTML = this.innerHTML;
-            y = this.parentNode.getElementsByClassName("same-as-selected");
-            for (k = 0; k < y.length; k++) {
-              y[k].removeAttribute("class");
-            }
-            this.setAttribute("class", "same-as-selected");
-            break;
-          }
-        }
-        h.click();
+var svgWidth = 960;
+var svgHeight = 500;
+
+var margin = {
+  top: 20,
+  right: 40,
+  bottom: 60,
+  left: 50
+};
+
+var width = svgWidth - margin.left - margin.right;
+var height = svgHeight - margin.top - margin.bottom;
+
+// Step 2: Create an SVG wrapper,
+// append an SVG group that will hold our chart,
+// and shift the latter by left and top margins.
+// =================================
+var svg = d3
+  .select("body")
+  .append("svg")
+  .attr("width", svgWidth)
+  .attr("height", svgHeight);
+
+var chartGroup = svg.append("g")
+  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+var barDiv = document.getElementById('bar-chart');
+ 
+    var HP = {
+        x: [monster1_name, monster2_name],
+        y: [monster1_hp, monster2_hp],
+        type: 'bar',
+        name: 'HP'
+        };
+ 
+    var Attack = {
+        x: [monster1_name, monster2_name],
+        y: [monster1_att, monster2_att],
+        type: 'bar',
+        name: 'Attack'
+        };
+ 
+    var Defense = {
+        x: [monster1_name, monster2_name],
+        y: [monster1_def, monster2_def],
+        type: 'bar',
+        name: 'Defense'
+        };
+    var SAttack = {
+        x: [monster1_name, monster2_name],
+        y: [monster1_satt, monster2_satt],
+        type: 'bar',
+        name: 'Special Attack'
+        };
+    var SDefense = {
+        x: [monster1_name, monster2_name],
+        y: [monster1_sdef, monster2_sdef],
+        type: 'bar',
+        name: 'Special Defense'
+        };
+    var Speed = {
+        x: [monster1_name, monster2_name],
+        y: [monster1_spd, monster2_spd],
+        type: 'bar',
+        name: 'Speed'
+        };
+ 
+    var data = [HP, Attack, Defense, SAttack, SDefense, Speed];
+ 
+    var layout = {
+        title:'Stat comparison',
+        barmode: 'stack'
+    };
+
+    // Step 5: Create Scales
+  //= ============================================
+  var xTimeScale = d3.scaleTime()
+  .domain(d3.extent(donutData, d => d.date))
+  .range([0, width]);
+
+var yLinearScale1 = d3.scaleLinear()
+  .domain([0, d3.max(donutData, d => d.morning)])
+  .range([height, 0]);
+
+var yLinearScale2 = d3.scaleLinear()
+  .domain([0, d3.max(donutData, d => d.evening)])
+  .range([height, 0]);
+
+// Step 6: Create Axes
+// =============================================
+var bottomAxis = d3.axisBottom(xTimeScale).tickFormat(d3.timeFormat("%d-%b"));
+var leftAxis = d3.axisLeft(yLinearScale1);
+var rightAxis = d3.axisRight(yLinearScale2);
+
+
+// Step 7: Append the axes to the chartGroup
+// ==============================================
+// Add bottomAxis
+chartGroup.append("g").attr("transform", `translate(0, ${height})`).call(bottomAxis);
+
+// Add leftAxis to the left side of the display
+chartGroup.append("g").call(leftAxis);
+
+// Add rightAxis to the right side of the display
+chartGroup.append("g").attr("transform", `translate(${width}, 0)`).call(rightAxis);
+
+ 
+    Plotly.newPlot( 'barDiv', data, layout );
+    
     });
-    b.appendChild(c);
-  }
-  x[i].appendChild(b);
-  a.addEventListener("click", function(e) {
-    /* When the select box is clicked, close any other select boxes,
-    and open/close the current select box: */
-    e.stopPropagation();
-    closeAllSelect(this);
-    this.nextSibling.classList.toggle("select-hide");
-    this.classList.toggle("select-arrow-active");
-  });
-}
-
-function closeAllSelect(elmnt) {
-  /* A function that will close all select boxes in the document,
-  except the current select box: */
-  var x, y, i, arrNo = [];
-  x = document.getElementsByClassName("select-items");
-  y = document.getElementsByClassName("select-selected");
-  for (i = 0; i < y.length; i++) {
-    if (elmnt == y[i]) {
-      arrNo.push(i)
-    } else {
-      y[i].classList.remove("select-arrow-active");
-    }
-  }
-  for (i = 0; i < x.length; i++) {
-    if (arrNo.indexOf(i)) {
-      x[i].classList.add("select-hide");
-    }
-  }
-}
-
-/* If the user clicks anywhere outside the select box,
-then close all select boxes: */
-document.addEventListener("click", closeAllSelect);
