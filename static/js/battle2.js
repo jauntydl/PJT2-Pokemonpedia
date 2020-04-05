@@ -5,6 +5,7 @@ function selectMonster() {
     return Math.ceil(Math.random() * (monster_tot+1));
 }
 
+<<<<<<< HEAD
 
 function Chart(){
     window.onload = function () {
@@ -102,11 +103,31 @@ function Battle(){
         //console.log(monster1_name)
         var monster1_power = p[monster1_index].Total;
         //console.log(monster1_power)
+=======
+var monster1_index = selectMonster();
+console.log(monster1_index);
+
+var monster2_index = selectMonster();
+console.log(monster2_index);
+
+function Battle(){
+    var monster1_index = selectMonster();
+    console.log(monster1_index);
+
+    var monster2_index = selectMonster();
+    console.log(monster2_index);
+    d3.csv(datapath).then(function(p){ 
+        var monster1_name = p[monster1_index].Name;
+        console.log(monster1_name)
+        var monster1_power = p[monster1_index].Total;
+        console.log(monster1_power)
+>>>>>>> b606c86dd9922f1824ef61b75d374dbfdf1ed5c3
         var monster1_hp = p[monster1_index].HP;
         var monster1_att = p[monster1_index].Attack;
         var monster1_def = p[monster1_index].Defense;
         var monster1_satt = p[monster1_index]["Sp. Atk"];
         var monster1_sdef = p[monster1_index]["Sp. Def"];
+<<<<<<< HEAD
         //console.log(monster1_sdef)
         var monster1_spd = p[monster1_index].Speed;
         
@@ -114,12 +135,25 @@ function Battle(){
         //console.log(monster2_name)
         var monster2_power = p[monster2_index].Total;
         //console.log(monster2_power)
+=======
+        console.log(monster1_sdef)
+        var monster1_spd = p[monster1_index].Speed;
+        
+        var monster2_name = p[monster2_index].Name;
+        console.log(monster2_name)
+        var monster2_power = p[monster2_index].Total;
+        console.log(monster2_power)
+>>>>>>> b606c86dd9922f1824ef61b75d374dbfdf1ed5c3
         var monster2_hp = p[monster2_index].HP;
         var monster2_att = p[monster2_index].Attack;
         var monster2_def = p[monster2_index].Defense;
         var monster2_satt = p[monster2_index]["Sp. Atk"];
         var monster2_sdef = p[monster2_index]["Sp. Def"];
+<<<<<<< HEAD
         //console.log(monster1_sdef)
+=======
+        console.log(monster1_sdef)
+>>>>>>> b606c86dd9922f1824ef61b75d374dbfdf1ed5c3
         var monster2_spd = p[monster2_index].Speed;
         var winner = " "
 
@@ -140,8 +174,11 @@ function Battle(){
     list.append("li").text("The two fighters are:" + monster1_name + " and " + monster2_name);
     list.append("li").text("The winner is.....");
     list.append("li").text(winner);
+<<<<<<< HEAD
     Chart()
     
+=======
+>>>>>>> b606c86dd9922f1824ef61b75d374dbfdf1ed5c3
     
     
     
@@ -155,6 +192,9 @@ function Battle(){
 d3.csv(datapath).then(function(data) {
     console.log(data[56]);
 })
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> b606c86dd9922f1824ef61b75d374dbfdf1ed5c3

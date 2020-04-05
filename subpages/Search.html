@@ -5,25 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Battle Simulator</title>
-
-    <!-- Boostrap Stylesheet -->
+    <title>Pokemon Search</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css" media="screen">
-
-    <!-- Our own CSS stylesheet -->
     <link rel="stylesheet" href="../assets/css/styles.css" media="screen">
-    
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    
-    
+  
 
   </head>
 
   <body>
-    
     <!-- Start of navbar -->
     <nav class="navbar navbar-default">
       <div class="container-fluid navbar-custom">
@@ -47,7 +38,7 @@
             <ul class="nav navbar-nav navbar-right navbar-right-custom">
               <li><a href="../Index.html">Home</a></li>
               <li><a href="Ranking.html">Monster Ranking</a></li>
-              <li><a href="Profile.html">Monster Profile</a></li>
+              <li><a href="Search.html">Monster Search</a></li>
               <li><a href="Battle.html">Battle Simulator</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
@@ -60,46 +51,64 @@
     <div class="container">
       <section class="row">
         <div class="col-md-12">
-          
           <article class="description-content">
-            <p> Pokemon Death Battle! </p>
-            <ul class="battle"></ul>
-            <div id="chartContainer" style="height: 300px; width: 100%;"></div>         
-            <input id="clickMe" type="button" value="Fight!" onclick="Battle();" />
-<<<<<<< HEAD
-            
-=======
-            
->>>>>>> b606c86dd9922f1824ef61b75d374dbfdf1ed5c3
+            <form>
+              <div class="form-group">
+                <ul class="list-group" id="filters">
+                  <li class="filter list-group-item">
+                    <label for="date">Search Your Pokemon</label>
+                    <input class="form-control" id="PokemonSearch" type="text" placeholder="Pikachu">
+                  </li>
+                </ul>
+              </div>
+              <button id="searchbutton" type="button" class="blue">Search Pokemon</button>
+              <button id="listbutton" type="button" class="red">Back to Full List</button>
+            </form>
+            <hr>
+
+            <table id="table-area" class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="table-head">#</th>
+                  <th class="table-head">Name</th>
+                  <th class="table-head">Type 1</th>
+                  <th class="table-head">Type 2</th>
+                  <th class="table-head">Total</th>
+                  <th class="table-head">HP</th>
+                  <th class="table-head">Attack</th>
+                  <th class="table-head">Defense</th>
+                  <th class="table-head">Special Attack</th>
+                  <th class="table-head">Special Defense</th>
+                  <th class="table-head">Speed</th>
+                  <th class="table-head">Generation</th>
+                  <th class="table-head">Legendary</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+
           </article>
         </div>
       </section>
     </div>
-    
-    
-    
     <!-- End of container -->
 
     <!-- Start of footer -->
     <footer class="footer navbar-fixed-bottom">
       <div class="two-toned-footer-color"></div>
       <p class="text-muted text-muted-footer text-center">
-        &copy; Project2 by Davis, April, and Aaronis
+        &copy; GT Bootcamp Group Members : Aaron, April, Davis
       </p>
     </footer>
     <!-- End of footer -->
-    
 
     <!-- jQuery CDN -->
-    <!-- script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script> -->
-    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
-    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
     <!-- Bootstrap CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../static/js/battle2.js"></script>
-    
   </body>
-  
+
+  <script type="text/javascript" src="../static/js/searchapp.js"></script>
 
 </html>
